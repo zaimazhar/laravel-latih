@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\CustomerBeganTrial;
 use Illuminate\Console\Command;
 
 class AddToDo extends Command
@@ -25,6 +26,7 @@ class AddToDo extends Command
      */
     public function handle()
     {
+        CustomerBeganTrial::fire(customerId: 123);
         $this->info('AddToDo command executed successfully.');
     }
 }
