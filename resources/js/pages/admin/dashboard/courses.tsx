@@ -1,8 +1,19 @@
+import AppLayout from '@/layouts/app-layout';
+import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+import { courses, dashboard } from '@/routes';
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Courses',
+        href: courses().url,
+    },
+];
 
 export default function Courses({ courses }: { courses: Array<{ id: number; title: string; description: string | null; created_at: string; price: number }> }) {
     return (
         <>
+            <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Courses" />
 
             <div className="py-12">
@@ -65,6 +76,7 @@ export default function Courses({ courses }: { courses: Array<{ id: number; titl
                     </div>
                 </div>
             </div>
+        </AppLayout>
         </>
     );
 }

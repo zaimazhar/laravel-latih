@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Trainer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Money\Money;
 
 return new class extends Migration
 {
@@ -13,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->longText('description');
-            $table->bigInteger('price');
+            $table->foreignIdFor(Trainer::class)->constrained()->cascadeOnDelete();
+            $table->bigInteger('price')->default(Money::MYR(0)->getAmount());
+            $table->string('currency')->default(Money::MYR(0)->getCurrency());
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

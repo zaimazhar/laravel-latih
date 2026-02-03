@@ -2,7 +2,6 @@
 
 use App\Models\Courses;
 use App\Models\Course;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -22,10 +21,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('admin/dashboard/courses', [
             'courses' => Courses::all(),
         ]);
-    })->name('courses.index');
+    })->name('courses');
 });
 
-require __DIR__ . '/settings.php';
 Route::get('/money', function () {
     $myMoney = Money::MYR(rand(1, 1000));
 
