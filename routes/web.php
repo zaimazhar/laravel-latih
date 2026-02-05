@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Courses;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,11 +16,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
+
+    // Courses
     Route::get('/courses', function () {
         return Inertia::render('admin/dashboard/courses', [
-            'courses' => Courses::all(),
+            'courses' => Course::all(),
         ]);
-    })->name('courses');
+    })->name('courses.index');
+
+    Route::get('/courses/create', function () {
+        return Inertia::render('admin/dashboard/courses/create');
+    })->name('courses.create');
 });
 
 Route::get('/money', function () {
@@ -41,7 +46,6 @@ Route::get('/testmoney', function () {
 
     return $money->getAmount();
 })->name('testmoney');
-
 
 Route::get('/getmoney', function () {
     $price = (Course::first())

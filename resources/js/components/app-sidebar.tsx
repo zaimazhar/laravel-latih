@@ -10,7 +10,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { courses, dashboard } from '@/routes';
+import { dashboard } from '@/routes';
+import { index } from '@/routes/courses';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
@@ -24,7 +25,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Courses',
-        href: courses(),
+        href: index().url,
         icon: Folder,
     }
 ];
